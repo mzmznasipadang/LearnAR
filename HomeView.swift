@@ -1,4 +1,3 @@
-//
 //  HomeView.swift
 //  LearnAR
 //
@@ -8,21 +7,30 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var currentTopic: String? = nil
+        @State private var currentTopic: String? = nil
 
-    var topics = [
-        ("Topic 1", "A brief summary of C programming."),
-        ("Topic 2", "An introduction to Python."),
-        ("Topic 3", "Understanding JavaScript."),
-        ("Topic 4", "Introduction to Swift."),
-        ("Topic 5", "Exploring Kotlin.")
-    ] //The Topics
-    var upcomingQuiz = [
+        var topics = [
+            ("Topic 1", "A brief summary of C programming."),
+            ("Topic 2", "An introduction to Python."),
+            ("Topic 3", "Understanding JavaScript."),
+            ("Topic 4", "Introduction to Swift."),
+            ("Topic 5", "Exploring Kotlin.")
+        ] // The Topics
+
+        var upcomingQuiz = [
             ("Quiz 1", "Topic 1", "Due: 2023-04-10"),
             ("Quiz 2", "Topic 2", "Due: 2023-04-12"),
             ("Quiz 3", "Topic 3", "Due: 2023-04-15"),
-    ] // Due Date
+        ] // Due Date
 
+        var progressReportData = [
+            ("Topic 1", 0.75),
+            ("Topic 2", 0.5),
+            ("Topic 3", 0.25),
+            ("Topic 4", 0.1),
+            ("Topic 5", 0.0)
+        ] // Progress Report Data
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -87,32 +95,12 @@ struct RecentlyAccessedView: View {
                         .padding()
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(10)
-//                        // Upcoming Quizzes
-//                        VStack(alignment: .leading, spacing: 10) {
-//                        Text("Upcoming Quizzes")
-//                        .font(.title2)
-//                        .fontWeight(.bold)
-//                        VStack(alignment: .leading, spacing: 5) {
-//                        ForEach(upcomingQuiz, id: \.0) { quiz in
-//                        VStack(alignment: .leading, spacing: 5) {
-//                        Text(quiz.0)
-//                         .font(.headline)
-//                        .fontWeight(.bold)
-//                            Text(quiz.1)
-//                        .font(.subheadline)
-//                            Text(quiz.2)
-//                         .font(.footnote)
-//                        .foregroundColor(.gray)
-//                                    }
-//                                    }
-//                                }
-//                            }
-                        }
                     }
                 }
             }
         }
     }
+}
 struct AchievementsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -135,14 +123,14 @@ struct AchievementsView: View {
                 .padding()
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
-                
+
                 VStack {
                     Image(systemName: "star.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50)
                         .foregroundColor(.yellow)
-                    
+
                     Text("Badge 2")
                         .font(.body)
                         .fontWeight(.semibold)
@@ -150,14 +138,14 @@ struct AchievementsView: View {
                 .padding()
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
-                
+
                 VStack {
                     Image(systemName: "star.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50)
                         .foregroundColor(.yellow)
-                    
+
                     Text("Badge 3")
                         .font(.body)
                         .fontWeight(.semibold)
@@ -165,25 +153,43 @@ struct AchievementsView: View {
                 .padding()
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
+                
                 }
+
             }
         }
     }
-//struct ProgressView: View {
-//    var body: some View {
-//        // Progress Report
-//        VStack(alignment: .leading, spacing: 10) {
-//            Text("Progress Report")
-//                .font(.title2)
-//                .fontWeight(.bold)
-//
-//            // Display progress report here
-//        }
-//    }
-//}
 
-    struct HomeView_Previews: PreviewProvider {
-        static var previews: some View {
-            HomeView()
+struct ProgressReportData {
+    let topic: String
+    let progress: Double
+    
+    
+}
+
+struct ProgressBar: View {
+    var value: Double
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .opacity(0.3)
+                    .foregroundColor(Color.blue)
+
+                Rectangle()
+                    .frame(width: CGFloat(self.value) * geometry.size.width, height: geometry.size.height)
+                    .foregroundColor(Color.blue)
+            }
         }
     }
+}
+
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}
+
