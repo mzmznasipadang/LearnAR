@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var currentTopic: String? = nil
     var body: some View {
         NavigationView {
             ScrollView {
@@ -17,20 +18,26 @@ struct HomeView: View {
                         .fontWeight(.bold)
                     
                     Text("Explore Topics")
-                        .font(.title)
-                        .fontWeight(.semibold)
+                        .font(.headline)
+                        .fontWeight(.medium)
                     
-                    // Add a horizontal scroll view to showcase the topics
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            // Replace the Text views with your topic cards or custom views
-                            Text("Topic 1")
-                            Text("Topic 2")
-                            Text("Topic 3")
-                            Text("Topic 4")
+                // Topic selection view
+                OptionalTopicSelectionView(currentTopic: $currentTopic)
+                    .padding(5)
+                                
+                HStack {
+                    if let topic = currentTopic {
+                    Text("Current Topic: \(topic)")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        } else {
+                        Text("Please select a topic")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(.red)
+                            }
+                            Spacer()
                         }
-                        .padding()
-                    }
                     
                     Text("Quizzes")
                         .font(.title)

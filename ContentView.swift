@@ -16,7 +16,7 @@ struct ContentView: View {
                     }
                 TopicsView()
                     .tabItem {
-                        Label("Topics", systemImage: "message.badge.filled.fill")
+                        Label("Topics", systemImage: "info.bubble.fill")
                     }
                 SettingsView()
                     .tabItem {
