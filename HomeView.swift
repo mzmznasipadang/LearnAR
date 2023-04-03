@@ -9,6 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var currentTopic: String? = nil
+
+        var topics = [
+            ("Topic 1", "A brief summary of C programming."),
+            ("Topic 2", "An introduction to Python."),
+            ("Topic 3", "Understanding JavaScript."),
+            ("Topic 4", "Introduction to Swift."),
+            ("Topic 5", "Exploring Kotlin.")
+        ]
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -20,24 +29,21 @@ struct HomeView: View {
                     Text("Explore Topics")
                         .font(.headline)
                         .fontWeight(.medium)
-                    
-                // Topic selection view
-                OptionalTopicSelectionView(currentTopic: $currentTopic)
-                    .padding(5)
-                                
-                HStack {
-                    if let topic = currentTopic {
-                    Text("Current Topic: \(topic)")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        } else {
-                        Text("Please select a topic")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .foregroundColor(.red)
-                            }
-                            Spacer()
+                    ForEach(topics, id: \.0) { topic, summary in
+                        VStack(alignment: .leading) {
+                            Text(topic)
+                                .font(.headline)
+                                .fontWeight(.bold)
+                            Text(summary)
+                                .font(.body)
                         }
+                        .padding()
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(20)
+                        .onTapGesture {
+                            currentTopic = topic
+                        }
+                    }.padding(.top, 5.0)
                     
                     Text("Quizzes")
                         .font(.title)

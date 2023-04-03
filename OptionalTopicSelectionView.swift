@@ -12,11 +12,6 @@ struct OptionalTopicSelectionView: View {
     @Binding var currentTopic: String?
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Select a topic:")
-                .font(.headline)
-                .fontWeight(.bold)
-            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(1...5, id: \.self) { index in
@@ -34,5 +29,4 @@ struct OptionalTopicSelectionView: View {
             }
         }
     }
-}
 
