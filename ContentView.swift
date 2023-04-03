@@ -19,6 +19,7 @@ struct ContentView: View {
                         Label("Topics", systemImage: "message.badge.filled.fill")
                     }
                 SettingsView()
+                
                     .tabItem {
                         Label("Settings", systemImage: "gear.circle.fill")
                     }
