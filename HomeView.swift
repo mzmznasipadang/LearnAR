@@ -43,40 +43,54 @@ struct HomeView: View {
                 Text("Home")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-
                 FeaturedTopicView()
-
+                    .padding(.vertical, 5.0)
                 RecentlyAccessedView(topics: topics)
-                    .padding(.top, 20.0)
+                    .padding(.top, 5.0)
 
                 AchievementsView()
             }
             .padding()
-        }
+        }.navigationTitle("Home")
     }
 }
 
 struct FeaturedTopicView: View {
+    let featuredTopics = [
+        ("Introduction to Swift", "Swift is a powerful and intuitive programming language for iOS, macOS, watchOS, and tvOS."),
+        ("Understanding JavaScript", "JavaScript is a lightweight, interpreted, or just-in-time compiled programming language."),
+        ("What is Java?", "Java is a versatile, object-oriented programming language. Java remains one of the most widely used programming languages today.")
+        // Add more topics here
+    ]
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Featured Topic")
-                .font(.headline)
+            Text("Featured Topics")
+                .font(.title2)
                 .fontWeight(.medium)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(featuredTopics, id: \.0) { topic in
+                        VStack(alignment: .leading) {
+                            Text(topic.0)
+                                .font(.headline)
+                                .fontWeight(.bold)
 
-            VStack(alignment: .leading) {
-                Text("Introduction to Swift")
-                    .font(.headline)
-                    .fontWeight(.bold)
-
-                Text("Swift is a powerful and intuitive programming language for iOS, macOS, watchOS, and tvOS. Writing Swift code is interactive and fun, the syntax is concise yet expressive, and Swift includes modern features developers love.")
-                    .font(.body)
+                            Text(topic.1)
+                                .font(.body)
+                        }
+                        .padding()
+                        .background(Color.customBackground.opacity(0.2))
+                        .cornerRadius(15)
+                        .frame(width: 350)
+                    }
+                }
             }
-            .padding()
-            .background(Color.customBackground.opacity(0.2))
-            .cornerRadius(10)
         }
     }
 }
+
 
 struct RecentlyAccessedView: View {
     let topics: [(String, String)]
@@ -161,8 +175,7 @@ struct AchievementsView: View {
                 .cornerRadius(10)
                 
                 }
-
-            }
+            }.navigationTitle("Home")
         }
     }
 
