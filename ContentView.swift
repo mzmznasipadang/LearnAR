@@ -9,43 +9,47 @@ struct ContentView: View {
             TabView(selection: $selectedTab) {
                 HomeView()
                     .tabItem {
-                        if selectedTab == 1{
-                            Label("Home", systemImage: "house")
-                        } else {
+                        if selectedTab == 0 {
                             Label("Home", systemImage: "house.fill")
+                        } else {
+                            Label("Home", systemImage: "house")
                         }
                     }
                     .tag(0)
+                    .animation(.easeInOut(duration: 1), value: selectedTab)
 
                 QuizView()
                     .tabItem {
-                        if selectedTab == 2 {
+                        if selectedTab == 1 {
                             Label("Quiz", systemImage: "book.fill")
                         } else {
                             Label("Quiz", systemImage: "text.book.closed.fill")
                         }
                     }
-                    .tag(2)
-                
+                    .tag(1)
+                    .animation(.easeInOut(duration: 1), value: selectedTab)
+
                 TopicsView()
                     .tabItem {
-                        if selectedTab == 3{
+                        if selectedTab == 2 {
                             Label("Topics", systemImage: "checkmark.message.fill")
                         } else {
                             Label("Topics", systemImage: "message.badge.filled.fill")
                         }
                     }
-                    .tag(3)
+                    .tag(2)
+                    .animation(.easeInOut(duration: 1), value: selectedTab)
 
                 SettingsView()
                     .tabItem {
-                    if selectedTab == 4{
-                    Label("Settings", systemImage: "gear.badge")
-                    } else {
-                    Label("Settings", systemImage: "gear")
-                            }
+                        if selectedTab == 3 {
+                            Label("Settings", systemImage: "gear.badge")
+                        } else {
+                            Label("Settings", systemImage: "gear")
                         }
-                    .tag(4)
+                    }
+                    .tag(3)
+                    .animation(.easeInOut(duration: 1), value: selectedTab)
             }
             
             SplashView(isShowing: $isSplashShowing)
