@@ -11,8 +11,8 @@ import Combine
 struct SettingsView: View {
     @State private var selectedThemeIndex = 0
     @AppStorage("selectedTheme") private var storedSelectedTheme: Int = 0
-    @State private var name = "Victor Chandra"
-    @State private var email = "victor.chandra@binus.ac.id"
+    @State private var name = ""
+    @State private var email = ""
 
     var themes = ["Light", "Dark"]
 
@@ -26,9 +26,10 @@ struct SettingsView: View {
 
                 Section(header: Text("Theme")) {
                     Picker("Select a theme", selection: $selectedThemeIndex) {
-                        ForEach(0..<themes.count) {
-                            Text(self.themes[$0])
+                        ForEach(0..<themes.count, id: \.self) { index in
+                            Text(self.themes[index])
                         }
+
                     }
                     .onAppear {
                         self.selectedThemeIndex = self.storedSelectedTheme
