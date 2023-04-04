@@ -6,40 +6,46 @@
 
 import SwiftUI
 
+extension Color {
+    static let customBackground = Color("customBackground")
+    static let customForeground = Color("customForeground")
+}
+
 struct HomeView: View {
-        @State private var currentTopic: String? = nil
+    @Environment(\.selectedTheme) private var selectedTheme
+    @State private var currentTopic: String? = nil
 
-        var topics = [
-            ("Topic 1", "A brief summary of C programming."),
-            ("Topic 2", "An introduction to Python."),
-            ("Topic 3", "Understanding JavaScript."),
-            ("Topic 4", "Introduction to Swift."),
-            ("Topic 5", "Exploring Kotlin.")
-        ] // The Topics
+    var topics = [
+        ("Topic 1", "A brief summary of C programming."),
+        ("Topic 2", "An introduction to Python."),
+        ("Topic 3", "Understanding JavaScript."),
+        ("Topic 4", "Introduction to Swift."),
+        ("Topic 5", "Exploring Kotlin.")
+    ] // The Topics
 
-        var upcomingQuiz = [
-            ("Quiz 1", "Topic 1", "Due: 2023-04-10"),
-            ("Quiz 2", "Topic 2", "Due: 2023-04-12"),
-            ("Quiz 3", "Topic 3", "Due: 2023-04-15"),
-        ] // Due Date
+    var upcomingQuiz = [
+        ("Quiz 1", "Topic 1", "Due: 2023-04-10"),
+        ("Quiz 2", "Topic 2", "Due: 2023-04-12"),
+        ("Quiz 3", "Topic 3", "Due: 2023-04-15"),
+    ] // Due Date
 
-        var progressReportData = [
-            ("Topic 1", 0.75),
-            ("Topic 2", 0.5),
-            ("Topic 3", 0.25),
-            ("Topic 4", 0.1),
-            ("Topic 5", 0.0)
-        ] // Progress Report Data
-    
+    var progressReportData = [
+        ("Topic 1", 0.75),
+        ("Topic 2", 0.5),
+        ("Topic 3", 0.25),
+        ("Topic 4", 0.1),
+        ("Topic 5", 0.0)
+    ] // Progress Report Data
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Home")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                
+
                 FeaturedTopicView()
-                
+
                 RecentlyAccessedView(topics: topics)
                     .padding(.top, 20.0)
 
@@ -66,7 +72,7 @@ struct FeaturedTopicView: View {
                     .font(.body)
             }
             .padding()
-            .background(Color.blue.opacity(0.1))
+            .background(Color.customBackground.opacity(0.2))
             .cornerRadius(10)
         }
     }
@@ -93,7 +99,7 @@ struct RecentlyAccessedView: View {
                                 .font(.subheadline)
                         }
                         .padding()
-                        .background(Color.blue.opacity(0.1))
+                        .background(Color.customBackground.opacity(0.2))
                         .cornerRadius(10)
                     }
                 }
@@ -121,7 +127,7 @@ struct AchievementsView: View {
                         .fontWeight(.semibold)
                 }
                 .padding()
-                .background(Color.blue.opacity(0.1))
+                .background(Color.customBackground.opacity(0.2))
                 .cornerRadius(10)
 
                 VStack {
@@ -136,7 +142,7 @@ struct AchievementsView: View {
                         .fontWeight(.semibold)
                 }
                 .padding()
-                .background(Color.blue.opacity(0.1))
+                .background(Color.customBackground.opacity(0.2))
                 .cornerRadius(10)
 
                 VStack {
@@ -151,7 +157,7 @@ struct AchievementsView: View {
                         .fontWeight(.semibold)
                 }
                 .padding()
-                .background(Color.blue.opacity(0.1))
+                .background(Color.customBackground.opacity(0.2))
                 .cornerRadius(10)
                 
                 }
@@ -176,7 +182,7 @@ struct ProgressBar: View {
                 Rectangle()
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .opacity(0.3)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.customForeground)
 
                 Rectangle()
                     .frame(width: CGFloat(self.value) * geometry.size.width, height: geometry.size.height)
@@ -186,10 +192,8 @@ struct ProgressBar: View {
     }
 }
 
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
 }
-
