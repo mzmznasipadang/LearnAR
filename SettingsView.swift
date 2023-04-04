@@ -36,10 +36,10 @@ struct SettingsView: View {
                         VStack(alignment: .leading) {
                             Text(name)
                                 .font(.title2)
-                                .fontWeight(.medium)
+                                .fontWeight(.semibold)
                             Text(email)
-                                .font(.title3)
-                                .fontWeight(.regular)
+                                
+                            Text("Active Student")
                         }
                         Spacer()
                     }
