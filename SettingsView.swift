@@ -11,8 +11,8 @@ import Combine
 struct SettingsView: View {
     @State private var selectedThemeIndex = 0
     @AppStorage("selectedTheme") private var storedSelectedTheme: Int = 0
-    @State private var name = "John Doe"
-    @State private var email = "johndoe@example.com"
+    @State private var name = "Victor Chandra"
+    @State private var email = "victor.chandra@binus.ac.id"
 
     var themes = ["Light", "Dark"]
 
@@ -20,21 +20,28 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 Section(header: Text("Profile")) {
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(.gray)
-                                .overlay(
-                                    Text("👤")
-                                        .font(.system(size: 25))
-                                        .foregroundColor(.white)
-                                )
-                            Spacer()
+                    HStack {
+                        AsyncImage(url: URL(string: "https://pbs.twimg.com/profile_images/1327307759168020480/KKWQDWQF_400x400.jpg"),
+                                   content: { image in
+                                       image
+                                           .resizable()
+                                           .scaledToFit()
+                                           .frame(width: 100, height: 100)
+                                           .clipShape(Circle())
+                                   },
+                                   placeholder: {
+                                       ProgressView()
+                                   })
+
+                        VStack(alignment: .leading) {
+                            Text(name)
+                                .font(.title2)
+                                .fontWeight(.medium)
+                            Text(email)
+                                .font(.title3)
+                                .fontWeight(.regular)
                         }
-                        TextField("Name", text: $name)
-                        TextField("Email", text: $email)
+                        Spacer()
                     }
                 }
 
