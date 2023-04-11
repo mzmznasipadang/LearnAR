@@ -12,7 +12,7 @@ struct SettingsView: View {
     @State private var selectedThemeIndex = 0
     @AppStorage("selectedTheme") private var storedSelectedTheme: Int = 0
     @State private var name = "Victor Chandra"
-    @State private var email = "victor.chandra@binus.ac.id"
+    @State private var email = "johndoe@email.com"
 
     var themes = ["Light", "Dark"]
 
